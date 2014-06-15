@@ -1,10 +1,12 @@
 Dithering generator
 =============
 
-test ...
+Generate dithering effect
 
-Test
+Example
 -------
+![alt tag](https://raw.githubusercontent.com/Tizzio/dithergen/master/misc/example.png)
+
 Test `code/testdir` test.
 
 * [click me](http://google.com) -- `test` 
