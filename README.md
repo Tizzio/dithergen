@@ -4,12 +4,12 @@ Dithering generator
 Generate dithering effect
 
 
-Code example
+Example
 -----------
 ```javascript
 var dg = new DitherGen(canvas);
 var imgData = dg.testGradient();
-dg.dither(imgData);
+dg.dither(imgData, 32);
 ```
 	
 Output
