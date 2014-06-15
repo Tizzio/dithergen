@@ -5,12 +5,12 @@ test ...
 
 Test
 -------
-Test `test/test` test.
+Test `code/testdir` test.
 
-* [.test, .test, .test, .test](http://google.com) -- `test` (https://google.com)
-* [.test](http://google.com) -- `test`
+* [click me](http://google.com) -- `test` 
+* [.test](http://google.com)
 
 test
 -----------
 
-    test code code test
+    test <code> code test()
