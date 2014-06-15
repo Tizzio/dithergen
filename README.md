@@ -6,12 +6,12 @@ Generate dithering effect
 
 Code example
 -----------
-	var dg = new DitherGen(canvas);
-	var imgData = dg.createGradient(true, [255, 0, 0, 255], [0, 0, 255, 255]);
-	dg.dither(imgData);
-
+```javascript
+var dg = new DitherGen(canvas);
+var imgData = dg.createGradient(true, [255, 0, 0, 255], [0, 0, 255, 255]);
+dg.dither(imgData);
+```
 	
-
 Output
 -------
 ![alt tag](https://raw.githubusercontent.com/Tizzio/dithergen/master/misc/example.png)
