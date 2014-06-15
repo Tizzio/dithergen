@@ -52,8 +52,8 @@ DitherGen.prototype.createGradient = function(vertical, c1, c2, begin, end){
 
 
 DitherGen.prototype.dither = function(imgData){
-	var w = this.canvas.width;
-	var h = this.canvas.height;
+	var w = imgData.width;
+	var h = imgData.height;
 	var data = imgData.data;
 	
 	for(var y = 0; y < h; y++){
@@ -78,19 +78,7 @@ DitherGen.prototype.dither = function(imgData){
 			this.pixelAdd(data, i3, this.colorMultiply(dPx, 5/16));
 			
 			var i4 = (x+1 + ywD) * 4;
-			this.pixelAdd(data, i4, this.colorMultiply(dPx, 1/16));
-			
-			/*
-			oldpixel  := pixel[x][y]
-			newpixel  := find_closest_palette_color(oldpixel)
-			pixel[x][y]  := newpixel
-			quant_error  := oldpixel - newpixel
-			pixel[x+1][y  ] := pixel[x+1][y  ] + quant_error * 7/16
-			pixel[x-1][y+1] := pixel[x-1][y+1] + quant_error * 3/16
-			pixel[x  ][y+1] := pixel[x  ][y+1] + quant_error * 5/16
-			pixel[x+1][y+1] := pixel[x+1][y+1] + quant_error * 1/16
-			*/
-	
+			this.pixelAdd(data, i4, this.colorMultiply(dPx, 1/16));	
 		} 
 	}
 	this.ctx.putImageData(imgData,0,0);
