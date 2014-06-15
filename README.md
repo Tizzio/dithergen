@@ -17,6 +17,10 @@ Output
 ![alt tag](https://raw.githubusercontent.com/Tizzio/dithergen/master/misc/example.png)
 
 
+	
+Download
+-------
+[dithergen.js](https://raw.githubusercontent.com/Tizzio/dithergen/master/js/dithergen.js)
 Github Markup test
 -------
 Test markup `markup/testcode` test.
