@@ -14,44 +14,40 @@ window.addEventListener('load', function() {
 	
 	var dg = new DitherGen(canvas);
 
-	var imgData = dg.createGradient(true, [255, 0, 0, 255], [0, 0, 255, 255]);
+	var imgData = dg.testGradient();
 	
-	dg.dither(imgData);
+	dg.dither(imgData, 32);
 }, true);
 
 
 function DitherGen(canvas){
-	//context 2d
+	//this.ctx 2d
 	this.canvas = canvas;
 	this.ctx = canvas.getContext("2d");
 	if(!this.ctx){
 		alert("Your browser does not support HTML5 Canvas");
 	}
 }
-DitherGen.prototype.createGradient = function(vertical, c1, c2, begin, end){
-	if(begin == undefined){
-		begin = 0;
-		end = 1;
-	}
-	var w = this.canvas.width;
-	var h = this.canvas.height;
-	var imgData = this.ctx.createImageData(w, h)
-	var data = imgData.data;
-	for(var y = 0; y < h; y++){
-		yw = y * w;
-		r = y/h;
-		for(var x = 0; x < w; x++){
-			var i = (x + yw) * 4;
-			this.pixelGradient(data, i, c1, c2, r);
-		} 
-	}
-	this.ctx.putImageData(imgData,0,0);
-	
-	return imgData;
+
+DitherGen.prototype.testGradient = function(){
+	this.ctx.rect(0, 0, this.canvas.width, this.canvas.height);
+	var grd = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height);
+
+	grd.addColorStop(0.14, '#FF0000'); 
+	grd.addColorStop(0.285714286, '#FF7F00'); 
+	grd.addColorStop(0.428571429, '#FFFF00'); 
+	grd.addColorStop(0.571428571, '#00FF00'); 
+	grd.addColorStop(0.714285714, '#0000FF'); 
+	grd.addColorStop(0.857142857, '#4B0082'); 
+	grd.addColorStop(1.0, '#8F00FF');
+
+	this.ctx.fillStyle = grd;
+	this.ctx.fill();
+	return this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 }
 
 
-DitherGen.prototype.dither = function(imgData){
+DitherGen.prototype.dither = function(imgData, amount){
 	var w = imgData.width;
 	var h = imgData.height;
 	var data = imgData.data;
@@ -64,7 +60,7 @@ DitherGen.prototype.dither = function(imgData){
 		for(var x = 0; x < w; x++){
 			var i = (x + yw) * 4;
 			var oPx = this.pixelGet(data, i);
-			var nPx = this.colorReduce(oPx, 64);
+			var nPx = this.colorReduce(oPx, amount);
 			var dPx = this.colorDifference(oPx, nPx);
 			this.pixelSet(data, i, nPx);
 			

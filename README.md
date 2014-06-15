@@ -8,7 +8,7 @@ Code example
 -----------
 ```javascript
 var dg = new DitherGen(canvas);
-var imgData = dg.createGradient(true, [255, 0, 0, 255], [0, 0, 255, 255]);
+var imgData = dg.testGradient();
 dg.dither(imgData);
 ```
 	
